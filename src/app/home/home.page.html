@@ -1,12 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Header
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [scrollEvents]="true" [appHideHeader]="hideHeader" (ionScroll)="onScroll($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-<ion-content>
+  <ion-row class="info-row" #hideHeader>
+    <ion-col size="2" class="ion-padding-start">
+      <img src="./assets/delivery.png" />
+    </ion-col>
+    <ion-col size="8">
+      <ion-text color="dark">
+        <span>Now</span>
+        <strong>London</strong>
+        <ion-icon name="chevron-down-outline" color="primary"></ion-icon>
+      </ion-text>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="sticky-row">
+    <ion-col size="10">
+      <ion-text class="ion-padding-start" color="medium"
+        [ngClass]="{'location-visible': showLocationDetail, 'location-hidden': !showLocationDetail}">
+        London
+      </ion-text>
+      <ion-searchbar placeholder="Dishes, restaurants or cuisines"></ion-searchbar>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
   <ion-slides [options]="catSlideOpts">
     <ion-slide *ngFor="let cat of categories">
       <img [src]="cat.img" />
@@ -45,6 +74,30 @@
           {{ f.distance }}
         </span>
       </div>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides [options]="highlightSlidesOpts">
+    <ion-slide *ngFor="let h of highlights">
+      <img [src]="h.img" />
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides [options]="highlightSlidesOpts">
+    <ion-slide *ngFor="let h of highlights">
+      <img [src]="h.img" />
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides [options]="highlightSlidesOpts">
+    <ion-slide *ngFor="let h of highlights">
+      <img [src]="h.img" />
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides [options]="highlightSlidesOpts">
+    <ion-slide *ngFor="let h of highlights">
+      <img [src]="h.img" />
     </ion-slide>
   </ion-slides>
 </ion-content>

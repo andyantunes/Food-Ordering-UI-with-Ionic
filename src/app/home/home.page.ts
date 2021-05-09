@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  private homeJson: string;
+
   protected categories = [];
   protected highlights = [];
   protected featured = [];
@@ -31,7 +33,7 @@ export class HomePage implements OnInit {
     freeMode: true,
   };
 
-  private homeJson: string;
+  protected showLocationDetail = false;
 
   constructor(private http: HttpClient) {
     this.homeJson =
@@ -45,5 +47,16 @@ export class HomePage implements OnInit {
       this.highlights = res.highlights;
       this.featured = res.featured;
     });
+  }
+
+  doRefresh(ev: any) {
+    setTimeout(() => {
+      ev.target.complete();
+    }, 2000);
+  }
+
+  onScroll(ev) {
+    const offset = ev.detail.scrollTop;
+    this.showLocationDetail = offset > 50;
   }
 }
