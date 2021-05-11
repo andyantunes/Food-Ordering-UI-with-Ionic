@@ -55,7 +55,7 @@ export class HomePage implements OnInit {
     }, 2000);
   }
 
-  onScroll(ev) {
+  onScroll(ev: any) {
     const offset = ev.detail.scrollTop;
     this.showLocationDetail = offset > 50;
   }
